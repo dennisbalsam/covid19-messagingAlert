@@ -8,6 +8,11 @@ const cron = require('node-cron')
 const admin = require('firebase-admin')
 //const serviceAccount = require('./firebasecreds.json')
 const axios = require('axios');
+
+//trying to fix request issues
+const cors = require('cors')
+app.use(cors())
+
 // for parsing
 app.use(bodyParser.json())
 
