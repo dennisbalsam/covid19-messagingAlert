@@ -112,7 +112,8 @@ function sendOut(confirmed, recovered, deaths, date,time) {
 
 }
 
-cron.schedule("0 13 * * *", function() {
+cron.schedule("* * * * *", function() {
+  console.log("cron function starting");
   fetchData().then((res)=> {
     //prepare values for send out
     let confirmed = 'Confirmed Cases: ' +  new Intl.NumberFormat('en-US').format(res.confirmed.value);
