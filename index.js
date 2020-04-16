@@ -112,7 +112,7 @@ function sendOut(confirmed, recovered, deaths, date,time) {
 
 }
 
-cron.schedule("* * * * *", function() {
+cron.schedule("20 13 * * *", function() {
   console.log("cron function starting");
   fetchData().then((res)=> {
     //prepare values for send out
