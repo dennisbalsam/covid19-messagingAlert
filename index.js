@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cron = require('node-cron')
 const admin = require('firebase-admin')
-const serviceAccount = require('./firebasecreds.json')
+//const serviceAccount = require('./firebasecreds.json')
 const axios = require('axios');
 // for parsing
 app.use(bodyParser.json())
