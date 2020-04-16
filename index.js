@@ -11,9 +11,18 @@ const axios = require('axios');
 // for parsing
 app.use(bodyParser.json())
 
-//firebase activation
+//firebase activation local
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });
+
+//firebase activation for heroku
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert({
+   "private_key": process.env.FIREBASE_PRIVATE_KEY,
+   "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+ }),
+ databaseURL: "https://covid19-tracker-edc90.firebaseio.com"
 })
 const db = admin.firestore()
 
