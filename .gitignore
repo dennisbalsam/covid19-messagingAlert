@@ -1,0 +1,8 @@
+# ignore .env
+.env
+
+#ignore json creds
+firebasecreds.json
+
+# ignore dependencies
+/node_modules
