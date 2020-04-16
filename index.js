@@ -128,6 +128,7 @@ cron.schedule("* * * * *", function() {
 //create a basic post route for front end to store the user
 app.post('/api/data/', async (req, response) => {
 
+
   // create object for add
   let test  = {
     name: req.body.name,
@@ -154,6 +155,8 @@ app.post('/api/data/', async (req, response) => {
             db.collection('users').doc(req.body.number).set(test).then(()=> {
               console.log("added a user");
             });
+            //for the logs
+            console.log(`New User Added: ${test.name}  ${test.number}`)
             //sned back message
             response.json({ response: 'Successfully registered for this service'});
             
