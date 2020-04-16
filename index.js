@@ -119,7 +119,7 @@ cron.schedule("* * * * *", function() {
     let recovered = 'Amount of Recoveries: ' + new Intl.NumberFormat('en-US').format(res.recovered.value);
     let deaths = 'Amount of Deaths: ' + new Intl.NumberFormat('en-US').format(res.deaths.value);
     let date = res.lastUpdateDate
-    let time = res.lastUpdateTime;
+    let time = res.lastUpdateTime + ' EST ';
   
     // call the send out function
     sendOut(confirmed,recovered,deaths,date,time);
