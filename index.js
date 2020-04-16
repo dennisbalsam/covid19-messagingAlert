@@ -61,7 +61,7 @@ const fetchData = async(country) => {
           recovered,
           deaths,
           lastUpdateDate: new Date(lastUpdate).toDateString(),
-          lastUpdateTime: new Date(lastUpdate).toLocaleTimeString()
+          lastUpdateTime: new Date(lastUpdate).toLocaleTimeString("en-US", {timeZone: "America/New_York"})
       }
       
       return modifiedData;
@@ -72,11 +72,12 @@ const fetchData = async(country) => {
 }
 
 // send out
-function sendOut(confirmed, recovered, deaths, date) {
+function sendOut(confirmed, recovered, deaths, date,time) {
   console.log(confirmed);
   console.log(deaths);
   console.log(recovered);
   console.log(date);
+  console.log(time)
   // get all subscirbed users
     var users = db.collection('users');
     var list = new Object();
@@ -96,7 +97,7 @@ function sendOut(confirmed, recovered, deaths, date) {
             client.messages.create({
               from: process.env.TWILIO_NUMBER,
               to: list[key],
-              body: ` Hello ${key} \n Covid-19 Stats - Last Update: \n ${date} \n ${confirmed} \n ${recovered} \n ${deaths}`
+              body: `  Hello ${key} \n Covid-19 Stats - Last Update: \n ${date} \n ${time} \n ${confirmed} \n ${recovered} \n ${deaths}`
             }).then((message) => console.log(message.sid));
             } catch (err) {
               console.log(err);
@@ -117,10 +118,11 @@ cron.schedule("* * * * *", function() {
     let confirmed = 'Confirmed Cases: ' +  new Intl.NumberFormat('en-US').format(res.confirmed.value);
     let recovered = 'Amount of Recoveries: ' + new Intl.NumberFormat('en-US').format(res.recovered.value);
     let deaths = 'Amount of Deaths: ' + new Intl.NumberFormat('en-US').format(res.deaths.value);
-    let date = res.lastUpdateDate + ' - ' + res.lastUpdateTime;
+    let date = res.lastUpdateDate
+    let time = res.lastUpdateTime;
   
     // call the send out function
-    sendOut(confirmed,recovered,deaths,date);
+    sendOut(confirmed,recovered,deaths,date,time);
   
   })
   
