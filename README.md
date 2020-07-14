@@ -7,4 +7,4 @@ Creating ExpressJS backend for my ReactJS frontend to accomplish:
 * Send out the Statistics for COVID-19
 
 # Example of Alerts sent everyday
-<img src='https://imgur.com/gWMbK8z' title='Photo of Alerts' width='' alt='Photo' />
+<img src='https://i.imgur.com/gWMbK8z.png' title='Photo of Alerts' width='' alt='Photo' />
